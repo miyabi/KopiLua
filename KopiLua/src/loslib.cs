@@ -165,7 +165,7 @@ namespace KopiLua
 			SetField(L, "day", stm.Day);
 			SetField(L, "month", stm.Month);
 			SetField(L, "year", stm.Year);
-			SetField(L, "wday", (int)stm.DayOfWeek);
+			SetField(L, "wday", (int)stm.DayOfWeek + 1);
 			SetField(L, "yday", stm.DayOfYear);
 			SetBoolField(L, "isdst", stm.IsDaylightSavingTime() ? 1 : 0);
 		  }
@@ -464,7 +464,10 @@ namespace KopiLua
 		private static int OSTime (LuaState L) {
 		  DateTime t;
 		  if (LuaIsNoneOrNil(L, 1))  /* called without args? */
+		  {
 			t = DateTime.Now;  /* get current time */
+			t = new DateTime(t.Year, t.Month, t.Day, t.Hour, t.Minute, t.Second);
+		  }
 		  else {
 			LuaLCheckType(L, 1, LUA_TTABLE);
 			LuaSetTop(L, 1);  /* make sure table is at the top */
