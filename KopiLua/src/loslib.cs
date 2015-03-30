@@ -472,8 +472,8 @@ namespace KopiLua
 			int min = GetField(L, "min", 0);
 			int hour = GetField(L, "hour", 12);
 			int day = GetField(L, "day", -1);
-			int month = GetField(L, "month", -1) - 1;
-			int year = GetField(L, "year", -1) - 1900;
+			int month = GetField(L, "month", -1);
+			int year = GetField(L, "year", -1);
 			/*int isdst = */GetBoolField(L, "isdst");	// todo: implement this - mjf
 			t = new DateTime(year, month, day, hour, min, sec);
 		  }
